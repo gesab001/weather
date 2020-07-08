@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { City } from './cities';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CitiesService {
+
+  private handleError: HandleError;
+  url  = 'https://gesab001.github.io/assets/weather/city.list.json';
+  constructor(
+    private http: HttpClient,
+    httpErrorHandler: HttpErrorHandler) {
+    this.handleError = httpErrorHandler.createHandleError('HttprequestService');
+  }
+
+  /** GET heroes from the server */
+  getCityList (): Observable<City[]> {
+    return this.http.get<City[]>(this.url)
+      .pipe(
+        catchError(this.handleError('getCityList', []))
+      );
+  }
+}
