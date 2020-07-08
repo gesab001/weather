@@ -1,6 +1,14 @@
-<div>
-
- <app-cities></app-cities>
- <app-cityweather></app-cityweather>
-
-</div>
+<nav> 
+  <ul>
+    <li>
+       <a routerLink="/" >home</a>
+    </li>
+    <li>
+       <a routerLink="/weather" >weather</a>
+    </li>
+    <li>
+       <a routerLink="/cities" >cities</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
