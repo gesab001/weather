@@ -5,10 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler }     from './http-error-handler.service';
 import { MessageService }       from './message.service';
 
+
+import {MatListModule} from '@angular/material/list'; 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CitiesComponent } from './cities/cities.component';
 import { CityweatherComponent } from './cityweather/cityweather.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import { CityweatherComponent } from './cityweather/cityweather.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpErrorHandler, MessageService],
   bootstrap: [AppComponent]

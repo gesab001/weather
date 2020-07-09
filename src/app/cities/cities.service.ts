@@ -10,10 +10,10 @@ import {publishReplay, refCount} from 'rxjs/operators';
 @Injectable()
 
 export class CitiesService {
-  _cities: Observable<any> = null;
+  _cities: any = null;
 
   private handleError: HandleError;
-  url = 'https://gesab001.github.io/assets/weather/city.list.json';
+  url = 'https://gesab001.github.io/assets/weather/cities.json';
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {

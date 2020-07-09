@@ -10,17 +10,25 @@ import { CitiesService} from './cities.service';
 })
 export class CitiesComponent implements OnInit {
   cache = {};
-  cities: City[];
+  name: string = 'test';
+  id: number = 0;
+  filtered: string = "test";  
+  cities: any;
+  citiesjson: JSON;
   subscription;
   storage: number;
   constructor(private citiesService: CitiesService) { }
 
+  somethingChanged(event){
+     this.name = event.target.value;
+     this.id = this.cities[this.name];
+     
+     this.filtered = this.name;
+  }
+
   ngOnInit(): void {
        this.loadData();
-   
-        
-
-  
+       this.citiesjson = <JSON>this.cities;
   }
 
  getCityList(): void {
