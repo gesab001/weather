@@ -1,0 +1,3 @@
+function filterLocation() {
+    return "hello";
+}

@@ -1,6 +1,12 @@
 <input (keyup)="somethingChanged($event)">
-<p>{{name}}</p>
-<p> {{id}}</p>
-<p>{{filtered}}</p>
+
+<p>total locations: {{cities.length}}</p>
+<p>filtered locations: {{filteredcities.length}}</p>
+
+<div *ngFor="let city of filteredcities ">
+  <a *ngIf="city.state!=''" href="https://api.openweathermap.org/data/2.5/weather?id={{city.id}}&units=metric&appid=68bcecc7386ea3f60442a466d3fc9503">{{city.name + ', '+ city.state + ', ' + city.country}} </a>
+  <a *ngIf="city.state==''" href="https://api.openweathermap.org/data/2.5/weather?id={{city.id}}&units=metric&appid=68bcecc7386ea3f60442a466d3fc9503">{{city.name + ', '+ city.country}} </a>
+</div>
+
 
 

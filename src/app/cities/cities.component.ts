@@ -1,6 +1,9 @@
 import { Component,  Input, OnChanges, SimpleChanges,ViewChild, OnInit } from '@angular/core';
 import { City } from './cities';
 import { CitiesService} from './cities.service';
+import { filter, map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+
 
 @Component({
   selector: 'app-cities',
@@ -8,32 +11,34 @@ import { CitiesService} from './cities.service';
   styleUrls: ['./cities.component.sass'],
   providers: [CitiesService]
 })
-export class CitiesComponent implements OnInit {
+export class CitiesComponent implements OnInit{
   cache = {};
-  name: string = 'test';
+  name: string = '';
   id: number = 0;
-  filtered: string = "test";  
-  cities: any;
-  citiesjson: JSON;
+  filteredcities: City[];
+    
+  cities: City[];
   subscription;
   storage: number;
+  regex: string;
   constructor(private citiesService: CitiesService) { }
 
   somethingChanged(event){
      this.name = event.target.value;
-     this.id = this.cities[this.name];
-     
-     this.filtered = this.name;
-  }
+     this.filterLocations(this.name);
+  } 
 
   ngOnInit(): void {
        this.loadData();
-       this.citiesjson = <JSON>this.cities;
-  }
 
- getCityList(): void {
-    this.citiesService.getCityList()
-      .subscribe(city => (this.cities = city));
+  }
+  
+  filterLocations(name: string) {
+    
+    this.subscription = this.citiesService.getReportDetails(name).subscribe(
+      res => (this.filteredcities = res),
+      error => console.log(error),
+    );
   }
 
   loadData() {
@@ -42,11 +47,6 @@ export class CitiesComponent implements OnInit {
       error => console.log(error),
     );
   }
-
-  loadCachedData(){
-
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
     console.log('Destroyed');
