@@ -23,7 +23,21 @@
 </div>
 <h1>Next 7 days</h1>
  
-    <div *ngFor="let item of cityWeather['daily']; let i = index">
-      <p>{{(getDay(today, i)) | date: 'EEEE'}}  
-      <p>{{item['weather'][0]['main']}}</p>
-    </div>
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Weather</th>
+        <th>Min &#176;</th>
+        <th>Max &#176;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cityWeather['daily']; let i = index">
+        <td *ngIf='i!=0'>{{(getDay(today, i)) | date: 'EEEE'}} </td>
+        <td *ngIf='i!=0'>{{item['weather'][0]['main']}}</td>
+        <td *ngIf='i!=0'>{{item['temp']['min']}}&#176;</td>
+        <td *ngIf='i!=0'>{{item['temp']['max']}}&#176;</td>
+      </tr>
+    </tbody>
+  </table>
