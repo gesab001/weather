@@ -9,16 +9,21 @@
 <p>Sunset: {{(getSunTime(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"]))}}</p>
 
 
-<h1>Hourly</h1>
+<h1>Next 48 Hours</h1>
 <div class="scrollmenu">
 
-    <div class="card" *ngFor="let hour of cityWeather['hourly']; let i = index">
-            <p *ngIf='i===0'>NOW</p>
-            <p *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
-            <p>{{hour["weather"][0]["main"]}}</p>
-            <img class="weathericon" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
-            <p>{{hour["temp"] | number:'1.0-0'}}&#176;</p>
+    <div class="card align-items-center bg-success" *ngFor="let hour of cityWeather['hourly']; let i = index">
+         <div class="card-block text-center">
+            <p class="card-text" *ngIf='i===0'>NOW</p>
+            <p class="card-text" *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
+            <img class="card-img-top weathericon" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
+            <p class="card-text">{{hour["temp"] | number:'1.0-0'}}&#176;</p>
+         </div>
     </div>
 </div>
-<h1>7 days</h1>
+<h1>Next 7 days</h1>
  
+    <div *ngFor="let item of cityWeather['daily']; let i = index">
+      <p>{{(getDay(today, i)) | date: 'EEEE'}}  
+      <p>{{item['weather'][0]['main']}}</p>
+    </div>

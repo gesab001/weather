@@ -38,6 +38,11 @@ export class CityweatherComponent implements OnInit {
         myDate.setHours( myDate.getHours() + index );  
         return myDate;
  }
+ getDay(date: any, index: number){
+        let myDate =  new Date(date);
+        myDate.setDate(myDate.getDate() + index);
+        return myDate;
+ }
  getSunTime(date: any){
         let myDate =  new Date(date);
         return myDate;
