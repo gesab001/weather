@@ -4,9 +4,11 @@
 <p>filtered locations: {{filteredcities.length}}</p>
 
 <div *ngFor="let city of filteredcities ">
-  <a *ngIf="city.state!=''" href="https://api.openweathermap.org/data/2.5/weather?id={{city.id}}&units=metric&appid=68bcecc7386ea3f60442a466d3fc9503">{{city.name + ', '+ city.state + ', ' + city.country}} </a>
-  <a *ngIf="city.state==''" href="https://api.openweathermap.org/data/2.5/weather?id={{city.id}}&units=metric&appid=68bcecc7386ea3f60442a466d3fc9503">{{city.name + ', '+ city.country}} </a>
+
+  <a *ngIf="city.state!=''" [routerLink]="['/weather', city.id]" >{{city.name + ', '+ city.state + ', ' + city.country}}</a>
+  <a *ngIf="city.state==''" [routerLink]="['/weather', city.id]" >{{city.name + ', '+ city.country}}</a>
 </div>
 
 
+<router-outlet></router-outlet>
 

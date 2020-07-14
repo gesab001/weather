@@ -1,1 +1,5 @@
-<p>cityweather works!</p>
+<h1>Today in {{cityWeather["name"] + ", " + cityWeather["sys"]["country"]}}</h1>
+<p>Weather: {{cityWeather["weather"][0]["main"]}}</p>
+<p>Temp: {{cityWeather["main"]["temp"]}} celcius</p>
+<p>Wind speed: {{cityWeather["wind"]["speed"]}} </p>
+
