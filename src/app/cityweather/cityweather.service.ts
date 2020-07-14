@@ -13,7 +13,9 @@ export class CityweatherService {
 _cities: Observable<CityWeather[]> = null;
 
   private handleError: HandleError;
-  url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=68bcecc7386ea3f60442a466d3fc9503&id=';
+  
+  /**url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=68bcecc7386ea3f60442a466d3fc9503&id=';*/
+  url = 'https://api.openweathermap.org/data/2.5/onecall?units=metric&exclude=minutely&appid=68bcecc7386ea3f60442a466d3fc9503&';
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
@@ -31,25 +33,11 @@ _cities: Observable<CityWeather[]> = null;
         catchError(this.handleError('getCityList', []))
       );
   }
-  getReports(): Observable<CityWeather[]>  {
-    console.log("in get Reports Service Call");
-    return this.http.get<CityWeather[]>(this.url)
-      .pipe(
-        tap(data => console.log('All Data Retrieved - ' + JSON.stringify(data))),
-        catchError(this.handleError));
-  }
-
-  getReportDetails(name : string) : Observable<CityWeather[]>
-  {
-    return this._cities.pipe(
-      map((reports : CityWeather[]) => reports.filter(p => p.name.toLowerCase()===name.toLowerCase()))
-    );
-  }
-
-  getCities(id: string) {
+ 
+  getCities(lat: string, long: string) {
     if (!this._cities) {
       this._cities = this.http
-        .get<CityWeather[]>(this.url+id)
+        .get<CityWeather[]>(this.url+"lat="+lat+"&lon="+long)
         .pipe(publishReplay(1), refCount());
     }
     return this._cities;

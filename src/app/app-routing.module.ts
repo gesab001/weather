@@ -5,7 +5,7 @@ import {CityweatherComponent} from './cityweather/cityweather.component';
 
 const routes: Routes = [
    {path: 'cities', component: CitiesComponent},
-   {path: 'weather/:id', component: CityweatherComponent} 
+   {path: 'weather/:lat/:lon/:city/:state/:country', component: CityweatherComponent} 
 ];
 
 @NgModule({

@@ -1,5 +1,24 @@
-<h1>Today in {{cityWeather["name"] + ", " + cityWeather["sys"]["country"]}}</h1>
-<p>Weather: {{cityWeather["weather"][0]["main"]}}</p>
-<p>Temp: {{cityWeather["main"]["temp"]}} celcius</p>
-<p>Wind speed: {{cityWeather["wind"]["speed"]}} </p>
+<h1>Today in {{cityname}}, {{country}}</h1>
 
+<p>Weather: {{cityWeather["current"]["weather"][0]["main"]}}</p>
+<p>Temp: {{cityWeather["current"]["temp"]}} celcius</p>
+<p>Wind speed: {{cityWeather["current"]["wind_speed"]}} </p>
+<p>Timezone: {{cityWeather["timezone"]}}</p>
+<p>Timezone offset: {{cityWeather["timezone_offset"]}}</p>
+<p>Sunrise: {{(getSunTime(cityWeather["current"]["sunrise"]+cityWeather["timezone_offset"])) }} </p>
+<p>Sunset: {{(getSunTime(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"]))}}</p>
+
+
+<h1>Hourly</h1>
+<div class="scrollmenu">
+
+    <div class="card" *ngFor="let hour of cityWeather['hourly']; let i = index">
+            <p *ngIf='i===0'>NOW</p>
+            <p *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
+            <p>{{hour["weather"][0]["main"]}}</p>
+            <img class="weathericon" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
+            <p>{{hour["temp"] | number:'1.0-0'}}&#176;</p>
+    </div>
+</div>
+<h1>7 days</h1>
+ 

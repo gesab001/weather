@@ -5,8 +5,8 @@
 
 <div *ngFor="let city of filteredcities ">
 
-  <a *ngIf="city.state!=''" [routerLink]="['/weather', city.id]" >{{city.name + ', '+ city.state + ', ' + city.country}}</a>
-  <a *ngIf="city.state==''" [routerLink]="['/weather', city.id]" >{{city.name + ', '+ city.country}}</a>
+  <a *ngIf="city.state!=''" [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, city.state, city.country]" >{{city.name + ', '+ city.state + ', ' + city.country}}</a>
+  <a *ngIf="city.state==''" [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, '', city.country]" >{{city.name + ', '+ city.country}}</a>
 </div>
 
 

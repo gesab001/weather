@@ -11,18 +11,39 @@ import {Observable} from 'rxjs';
   providers: [CityweatherService]
 })
 export class CityweatherComponent implements OnInit {
-  id: string;
+  today: number;
+  lat: string;
+  lon: string;  
+  cityname: string;
+  state: string;
+  country: string;
   cityWeather: CityWeather[];
+  subscription;
   constructor(private route: ActivatedRoute, private cityweatherService: CityweatherService) { }
 
   ngOnInit(): void {
-
-     this.route.paramMap.subscribe(params => { this.id = params.get('id');});
+     this.today = Date.now();
+     this.route.paramMap.subscribe(params => { 
+              this.lat = params.get('lat');
+              this.lon = params.get('lon');
+              this.cityname = params.get('city');
+              this.state = params.get('state');
+              this.country = params.get('country');
+     });
      this.loadData();
   }
 
+ getHour(date: any, index: number){
+        let myDate =  new Date(date);
+        myDate.setHours( myDate.getHours() + index );  
+        return myDate;
+ }
+ getSunTime(date: any){
+        let myDate =  new Date(date);
+        return myDate;
+ }
  loadData() {
-    this.subscription = this.cityweatherService.getCities(this.id).subscribe(
+    this.subscription = this.cityweatherService.getCities(this.lat, this.lon).subscribe(
       res => (this.cityWeather = res),
       error => console.log(error),
     );
