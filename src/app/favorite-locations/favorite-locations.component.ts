@@ -21,9 +21,9 @@ export class FavoriteLocationsComponent implements OnInit {
    if (favoritesList==null){
        let newlist = {"items": []};
        newlist["items"].push(location);
-       localStorage.setItem("favoriteLocations", JSON.stringify(newlist));
+       localStorage.setItem("defaultLocation", JSON.stringify(newlist));
    }else{
-     favoritesList["items"].push(location);
+     favoritesList["items"][0] = location;
      localStorage.setItem("defaultLocation", JSON.stringify(favoritesList));
    } 
   }
@@ -36,7 +36,7 @@ export class FavoriteLocationsComponent implements OnInit {
        newlist["items"].push(location);
        localStorage.setItem("defaultLocation", JSON.stringify(newlist));
    }else{
-     favoritesList["items"].push(location);
+     favoritesList["items"][0] = location;
      localStorage.setItem("defaultLocation", JSON.stringify(favoritesList));
    } 
   }

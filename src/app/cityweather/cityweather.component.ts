@@ -15,6 +15,7 @@ export class CityweatherComponent implements OnInit {
   lat: string;
   lon: string;  
   cityname: string;
+  defaultLocation: JSON;
   state: string;
   country: string;
   cityWeather: CityWeather[];
@@ -22,6 +23,7 @@ export class CityweatherComponent implements OnInit {
   constructor(private route: ActivatedRoute, private cityweatherService: CityweatherService) { }
 
   ngOnInit(): void {
+  
      this.today = Date.now();
      this.route.paramMap.subscribe(params => { 
               this.lat = params.get('lat');
@@ -30,6 +32,12 @@ export class CityweatherComponent implements OnInit {
               this.state = params.get('state');
               this.country = params.get('country');
      });
+     this.defaultLocation = JSON.parse(localStorage.getItem("defaultLocation"));
+     this.lat = this.defaultLocation["items"][0]["lat"];
+     this.lon = this.defaultLocation["items"][0]["lon"];
+     this.cityname = this.defaultLocation["items"][0]["city"];
+     this.state = this.defaultLocation["items"][0]["state"];
+     this.country = this.defaultLocation["items"][0]["country"];
      this.loadData();
   }
 
