@@ -5,8 +5,8 @@
 <p>Wind speed: {{cityWeather["current"]["wind_speed"]}} </p>
 <p>Timezone: {{cityWeather["timezone"]}}</p>
 <p>Timezone offset: {{cityWeather["timezone_offset"]}}</p>
-<p>Sunrise: {{(getSunTime(cityWeather["current"]["sunrise"]+cityWeather["timezone_offset"])) }} </p>
-<p>Sunset: {{(getSunTime(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"]))}}</p>
+<p>Sunrise: {{(cityWeather["current"]["sunrise"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}} </p>
+<p>Sunset: {{(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}}</p>
 
 
 <h1>Next 48 Hours</h1>
@@ -30,6 +30,11 @@
         <th>Weather</th>
         <th>Min &#176;</th>
         <th>Max &#176;</th>
+        <th>Sunrise</th>
+        <th>Sunset</th>
+        <th>Low Tide</th>
+        <th>High Tide</th>
+        <th>Moon Phase</th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +43,9 @@
         <td *ngIf='i!=0'>{{item['weather'][0]['main']}}</td>
         <td *ngIf='i!=0'>{{item['temp']['min']}}&#176;</td>
         <td *ngIf='i!=0'>{{item['temp']['max']}}&#176;</td>
+        <td *ngIf='i!=0'>{{(item['sunrise']+cityWeather["timezone_offset"])*1000 | date : 'shortTime'}} </td>
+        <td *ngIf='i!=0'>{{(item['sunset']+cityWeather["timezone_offset"])*1000 | date : 'shortTime'}}</td>
+
       </tr>
     </tbody>
   </table>
