@@ -47,6 +47,33 @@ export class CitiesComponent implements OnInit{
       error => console.log(error),
     );
   }
+
+  addToFavorites(lat, lon, city, state, country){
+   let location = {'lat': lat, 'lon': lon, 'city': city, 'state': state, 'country': country};
+   let favoritesList = JSON.parse(localStorage.getItem("favoriteLocations"));
+   if (favoritesList==null){
+       let newlist = {"items": []};
+       newlist["items"].push(location);
+       localStorage.setItem("favoriteLocations", JSON.stringify(newlist));
+   }else{
+     favoritesList["items"].push(location);
+     localStorage.setItem("favoriteLocations", JSON.stringify(favoritesList));
+   } 
+  }
+
+  addToFavorites1(lat, lon, city, country){
+   let location = {'lat': lat, 'lon': lon, 'city': city, 'state': '', 'country': country};
+   let favoritesList = JSON.parse(localStorage.getItem("favoriteLocations"));
+   if (favoritesList==null){
+       let newlist = {"items": []};
+       newlist["items"].push(location);
+       localStorage.setItem("favoriteLocations", JSON.stringify(newlist));
+   }else{
+     favoritesList["items"].push(location);
+     localStorage.setItem("favoriteLocations", JSON.stringify(favoritesList));
+   } 
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
     console.log('Destroyed');

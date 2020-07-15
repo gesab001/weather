@@ -1,0 +1,11 @@
+<div *ngFor="let item of locations['items']">
+
+ <div *ngIf="item.state!=''" >
+    <a [routerLink]="['/weather', item.lat, item.lon, item.city, item.state, item.country]" >{{item.city + ', '+ item.state + ', ' + item.country}}</a>
+  </div>
+  <div *ngIf="item.state==''">
+    <a  [routerLink]="['/weather', item.lat, item.lon, item.city, '', item.country]" >{{item.city + ', '+ item.country}}</a>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

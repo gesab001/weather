@@ -4,7 +4,6 @@
 <p>Temp: {{cityWeather["current"]["temp"]}} celcius</p>
 <p>Wind speed: {{cityWeather["current"]["wind_speed"]}} </p>
 <p>Timezone: {{cityWeather["timezone"]}}</p>
-<p>Timezone offset: {{cityWeather["timezone_offset"]}}</p>
 <p>Sunrise: {{(cityWeather["current"]["sunrise"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}} </p>
 <p>Sunset: {{(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}}</p>
 

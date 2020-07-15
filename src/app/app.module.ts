@@ -19,11 +19,13 @@ import { CityweatherComponent } from './cityweather/cityweather.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FavoriteLocationsComponent } from './favorite-locations/favorite-locations.component';
 @NgModule({
   declarations: [
     AppComponent,
     CitiesComponent,
-    CityweatherComponent
+    CityweatherComponent,
+    FavoriteLocationsComponent
   ],
   imports: [
     BrowserModule,
