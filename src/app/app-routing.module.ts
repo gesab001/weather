@@ -5,7 +5,7 @@ import {CityweatherComponent} from './cityweather/cityweather.component';
 import {FavoriteLocationsComponent} from './favorite-locations/favorite-locations.component';
 
 const routes: Routes = [
-   {path: 'cities', component: CitiesComponent},
+   {path: 'search', component: CitiesComponent},
    {path: 'weather/:lat/:lon/:city/:state/:country', component: CityweatherComponent} ,
    {path: 'favorites', component: FavoriteLocationsComponent}
 ];
