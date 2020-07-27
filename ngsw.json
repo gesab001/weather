@@ -1,0 +1,92 @@
+{
+  "configVersion": 1,
+  "timestamp": 1595828764566,
+  "index": "/weather/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/weather/favicon.ico",
+        "/weather/index.html",
+        "/weather/main-es2015.c160ea6a96392e8e038f.js",
+        "/weather/main-es5.c160ea6a96392e8e038f.js",
+        "/weather/manifest.webmanifest",
+        "/weather/polyfills-es2015.f332a089ad1600448873.js",
+        "/weather/polyfills-es5.177e85a9724683782539.js",
+        "/weather/runtime-es2015.0dae8cbc97194c7caed4.js",
+        "/weather/runtime-es5.0dae8cbc97194c7caed4.js",
+        "/weather/styles.aa3c39523b08d23453ff.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/weather/assets/icons/icon-114x114.png",
+        "/weather/assets/icons/icon-120x120.png",
+        "/weather/assets/icons/icon-128x128.png",
+        "/weather/assets/icons/icon-144x144.png",
+        "/weather/assets/icons/icon-152x152.png",
+        "/weather/assets/icons/icon-180x180.png",
+        "/weather/assets/icons/icon-192x192.png",
+        "/weather/assets/icons/icon-384x384.png",
+        "/weather/assets/icons/icon-512x512.png",
+        "/weather/assets/icons/icon-57x57.png",
+        "/weather/assets/icons/icon-72x72.png",
+        "/weather/assets/icons/icon-76x76.png",
+        "/weather/assets/icons/icon-96x96.png",
+        "/weather/assets/js/locationfilter.js"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/weather/assets/icons/icon-114x114.png": "ec4bb0c07309e62b8c828b0442cd37e61f2edd31",
+    "/weather/assets/icons/icon-120x120.png": "57af67c59fa464287bbaed4c4d3f0acae362a3ec",
+    "/weather/assets/icons/icon-128x128.png": "59347ebf45579d39ffbe812590de46961c6a96e0",
+    "/weather/assets/icons/icon-144x144.png": "b46213bec0f6a70f7a7979cffdb447f86b9488b3",
+    "/weather/assets/icons/icon-152x152.png": "c0ac3f286cca37ce62e52e75bac7a412aac90fb0",
+    "/weather/assets/icons/icon-180x180.png": "5b1a3e635f828399ca22b8b9a2e08eb4bbad51a8",
+    "/weather/assets/icons/icon-192x192.png": "f923a3e1934f9aa35e678b6f100d06d7ea0d3bcf",
+    "/weather/assets/icons/icon-384x384.png": "de1d639123e41ab820a5f7116445ee60e1d14ac3",
+    "/weather/assets/icons/icon-512x512.png": "12471f670fc69933aedad7942b82fa95ad49f6c6",
+    "/weather/assets/icons/icon-57x57.png": "36102dc512ac31b6899a8e4e7e1b7e68e8fce051",
+    "/weather/assets/icons/icon-72x72.png": "faf79d5494b959143246998d5210843c50d8edc2",
+    "/weather/assets/icons/icon-76x76.png": "5b435ce775b37298740aed412dd8b0e0b001b55a",
+    "/weather/assets/icons/icon-96x96.png": "7083fbd54fdf0410a5b6b44c3bf68f8b15fe49c4",
+    "/weather/assets/js/locationfilter.js": "d17e1e8e51a5ad9d921b3b3cfead7ebc5087e6ef",
+    "/weather/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/weather/index.html": "d53c702225aa9ff7088a48ef53cb6a250ddc387e",
+    "/weather/main-es2015.c160ea6a96392e8e038f.js": "bd51afcb59f0060c7f39d9e4f57c4b91cef4d5eb",
+    "/weather/main-es5.c160ea6a96392e8e038f.js": "1e3a6ead5916254441e594db38d7daa1ff7243ee",
+    "/weather/manifest.webmanifest": "1c82d2f2fd2edbb40ccb767d33de1c97bc00a476",
+    "/weather/polyfills-es2015.f332a089ad1600448873.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "/weather/polyfills-es5.177e85a9724683782539.js": "8aa26ea87b9958c6bd13b7c257c0e9940438e684",
+    "/weather/runtime-es2015.0dae8cbc97194c7caed4.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/weather/runtime-es5.0dae8cbc97194c7caed4.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/weather/styles.aa3c39523b08d23453ff.css": "507c9903e3b5f1b7df98b4ce2d9b9656a18abae0"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
