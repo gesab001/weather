@@ -1,15 +1,24 @@
-<nav> 
-  <ul>
-    <li>
-       <a routerLink="" >home</a>
-    </li>
-    <li>
-       <a routerLink="/favorites" >favorites</a>
-    </li>
-    <li>
-       <a routerLink="/search" >search</a>
-    </li>
-  </ul>
-</nav>
+<div style="padding-top: 10px; display:flex; flex-direction: row; align-items: center; justify-content: center;">
+
+
+       <a routerLink="" class="nav-links">home </a>
+
+       <a routerLink="/favorites" class="nav-links">favorites </a>
+       <div class="search-container">
+		   
+		   <input (keyup)="somethingChanged($event)" class="searchInputField" placeholder="Search city">
+			<div *ngFor="let city of filteredcities ">
+			  <div *ngIf="city.state!=''" >
+				<button (click)="addToFavorites(city.coord.lat, city.coord.lon, city.name, city.state, city.country)">Add</button>
+				<a [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, city.state, city.country]" >{{city.name + ', '+ city.state + ', ' + city.country}}</a>
+			  </div>
+			  <div *ngIf="city.state==''">
+				<button (click)="addToFavorites1(city.coord.lat, city.coord.lon, city.name, city.country)">Add</button>
+				<a  [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, '', city.country]" >{{city.name + ', '+ city.country}}</a>
+			  </div>
+			</div>       
+       </div>
+    <!--   <a routerLink="/search" class="nav-links">search </a>-->
+</div>
 
 <router-outlet></router-outlet>

@@ -35,9 +35,12 @@ _cities: Observable<CityWeather[]> = null;
   }
  
   getCities(lat: string, long: string) {
+    this.clearCache();
     if (!this._cities) {
+      this.url = this.url +"lat="+lat+"&lon="+long;
+      console.log(this.url);
       this._cities = this.http
-        .get<CityWeather[]>(this.url+"lat="+lat+"&lon="+long)
+        .get<CityWeather[]>(this.url)
         .pipe(publishReplay(1), refCount());
     }
     return this._cities;

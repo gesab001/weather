@@ -22,12 +22,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavoriteLocationsComponent } from './favorite-locations/favorite-locations.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     CitiesComponent,
     CityweatherComponent,
-    FavoriteLocationsComponent
+    FavoriteLocationsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
