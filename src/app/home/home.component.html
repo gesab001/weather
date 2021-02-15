@@ -20,12 +20,12 @@
 
         <div class="scrollmenu">
 
-            <div class="card align-items-center bg-success" *ngFor="let hour of cityWeather['hourly']; let i = index">
-                 <div class="card-block text-center">
-                    <p class="card-text" *ngIf='i===0'>NOW</p>
-                    <p class="card-text" *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
-                    <img class="card-img-top weathericon" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
-                    <p class="card-text">{{hour["temp"] | number:'1.0-0'}}&#176;</p> 
+            <div  *ngFor="let hour of cityWeather['hourly']; let i = index">
+                 <div >
+                    <p  *ngIf='i===0'>NOW</p>
+                    <p  *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
+                    <img src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
+                    <p >{{hour["temp"] | number:'1.0-0'}}&#176;</p> 
                  </div>
             </div>
         </div>
