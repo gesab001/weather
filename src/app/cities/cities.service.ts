@@ -49,7 +49,8 @@ export class CitiesService {
 
   getCityName(lat, long) : Observable<City[]> {
      console.log(this.getCities());
-     return this.getCities().pipe(map((reports : City[]) => reports.filter(p => Number.parseFloat(p.coord.lat).toFixed(1)===Number.parseFloat(lat).toFixed(1) && Number.parseFloat(p.coord.lon).toFixed(1)===Number.parseFloat(long).toFixed(1) ))
+     //return this.getCities().pipe(map((reports : City[]) => reports.filter(p => Number.parseFloat(p.coord.lat).toFixed(1)===Number.parseFloat(lat).toFixed(1) && Number.parseFloat(p.coord.lon).toFixed(1)===Number.parseFloat(long).toFixed(1) ))
+      return this.getCities().pipe(map((reports : City[]) => reports.filter(p => p.coord.lat === -36.75))
     );
   }
    

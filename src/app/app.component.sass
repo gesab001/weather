@@ -1,16 +1,37 @@
+.header
+ display: flex
+ flex-direction: row
+ align-items: center
+ justify-content: center
+ background-color: #004f69
+ padding: 20px
+
 .nav-links
-  padding-right: 20px
+  padding: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
 
  
-.searchInputField
+.searchBox
+  max-width: 380px
+  width: 100%
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
-  background-color: blue
+  background-color: #004f69
   color: white
   font-weight: bold
-  border-style: solid
-  border-color: blue
-  border-radius: 9999px
   text-align: center
 
+.searchInputField
+  width: 100%
+  background: hsla(0,0%,100%,.2)
+  border: 0
+  border-radius: 20px
+  line-height: 1.5
+  text-align: center
+  color: white
+  padding: 5px 6px
+  height: 38px
