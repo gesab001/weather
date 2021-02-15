@@ -23,6 +23,7 @@ import { FavoriteLocationsComponent } from './favorite-locations/favorite-locati
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
+import {MatTabsModule} from '@angular/material/tabs'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { HomeComponent } from './home/home.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     FormsModule,
+    MatTabsModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

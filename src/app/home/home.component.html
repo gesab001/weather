@@ -1,51 +1,71 @@
-<h1>Today in {{cityname}}, {{country}}</h1>
+<div style="display:flex; flex-direction:row; align-items: center; justify-content: center">
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Today">
 
-<p>Weather: {{cityWeather["current"]["weather"][0]["main"]}}</p>
-<p>Temp: {{cityWeather["current"]["temp"]}} celcius</p>
-<p>Wind speed: {{cityWeather["current"]["wind_speed"]}} </p>
-<p>Timezone: {{cityWeather["timezone"]}}</p>
-<p>Sunrise: {{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} </p>
-<!--<p>Sunset: {{(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}}</p>-->
-<p>Sunset: {{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}</p>
+        <h1>Today in {{cityname}}, {{country}}</h1>
+
+        <p>Weather: {{cityWeather["current"]["weather"][0]["main"]}}</p>
+        <p>Temp: {{cityWeather["current"]["temp"]}} celcius</p>
+        <p>Wind speed: {{cityWeather["current"]["wind_speed"]}} </p>
+        <p>Timezone: {{cityWeather["timezone"]}}</p>
+        <p>Sunrise: {{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} </p>
+        <!--<p>Sunset: {{(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}}</p>-->
+        <p>Sunset: {{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}</p>
+
+  </mat-tab>
+  <mat-tab label="Hourly">
+
+        <h1>Next 48 Hours</h1>
+        <p id="demo"></p>
+
+        <div class="scrollmenu">
+
+            <div class="card align-items-center bg-success" *ngFor="let hour of cityWeather['hourly']; let i = index">
+                 <div class="card-block text-center">
+                    <p class="card-text" *ngIf='i===0'>NOW</p>
+                    <p class="card-text" *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
+                    <img class="card-img-top weathericon" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
+                    <p class="card-text">{{hour["temp"] | number:'1.0-0'}}&#176;</p>
+                 </div>
+            </div>
+        </div>
+
+  </mat-tab>
+  <mat-tab label="7-day">
+
+        <h1>Next 7 days</h1>
+         
+           <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Weather</th>
+                <th>Min &#176;</th>
+                <th>Max &#176;</th>
+                <th>Sunrise</th>
+                <th>Sunset</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cityWeather['daily']; let i = index">
+                <td *ngIf='i!=0'>{{(getDay(today, i)) | date: 'EEEE'}} </td>
+                <td *ngIf='i!=0'><img class="card-img-top weathericon" src="http://openweathermap.org/img/wn/{{item['weather'][0]['icon']}}@2x.png"/></td>
+                <td *ngIf='i!=0'>{{item['temp']['min']}}&#176;</td>
+                <td *ngIf='i!=0'>{{item['temp']['max']}}&#176;</td>
+                <td *ngIf='i!=0'>{{(item['sunrise']*1000) | date : 'shortTime'}} </td>
+                <td *ngIf='i!=0'>{{(item['sunset']*1000) | date : 'shortTime'}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+  </mat-tab>
+</mat-tab-group>
+ </div>
 
 
-<h1>Next 48 Hours</h1>
-<p id="demo"></p>
 
-<div class="scrollmenu">
 
-    <div class="card align-items-center bg-success" *ngFor="let hour of cityWeather['hourly']; let i = index">
-         <div class="card-block text-center">
-            <p class="card-text" *ngIf='i===0'>NOW</p>
-            <p class="card-text" *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
-            <img class="card-img-top weathericon" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
-            <p class="card-text">{{hour["temp"] | number:'1.0-0'}}&#176;</p>
-         </div>
-    </div>
-</div>
-<h1>Next 7 days</h1>
- 
-   <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Day</th>
-        <th>Weather</th>
-        <th>Min &#176;</th>
-        <th>Max &#176;</th>
-        <th>Sunrise</th>
-        <th>Sunset</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cityWeather['daily']; let i = index">
-        <td *ngIf='i!=0'>{{(getDay(today, i)) | date: 'EEEE'}} </td>
-        <td *ngIf='i!=0'><img class="card-img-top weathericon" src="http://openweathermap.org/img/wn/{{item['weather'][0]['icon']}}@2x.png"/></td>
-        <td *ngIf='i!=0'>{{item['temp']['min']}}&#176;</td>
-        <td *ngIf='i!=0'>{{item['temp']['max']}}&#176;</td>
-        <td *ngIf='i!=0'>{{(item['sunrise']*1000) | date : 'shortTime'}} </td>
-        <td *ngIf='i!=0'>{{(item['sunset']*1000) | date : 'shortTime'}}</td>
 
-      </tr>
-    </tbody>
-  </table>
