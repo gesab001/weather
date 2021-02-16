@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CityWeather } from '../cityweather/cityweather';
 import { CityweatherService} from '../cityweather/cityweather.service';
@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
+  encapsulation: ViewEncapsulation.None,
   providers: [CityweatherService, CitiesService]
 })
 export class HomeComponent implements OnInit {
@@ -135,5 +136,68 @@ export class HomeComponent implements OnInit {
 	  } else { 
 		x.innerHTML = "Geolocation is not supported by this browser.";
 	  }
+  }
+
+  unitConverter(speed, operator, unit){
+    if (operator=="multiply"){
+      return Math.round(parseFloat(speed) * unit);
+    }
+    if (operator=="divide"){
+      return Math.round(parseFloat(speed) / unit);
+    }
+  }
+
+  getWindDirection(degree){
+    var unit = parseFloat(degree);
+    var result;
+    if(unit<348.75 && unit>=11.25){
+       result = "N";
+    }
+    if(unit>11.25 && unit<=33.75){
+       result = "NNE";
+    }
+    if(unit>33.75 && unit<=56.25){
+       result = "NE";
+    }
+    if(unit>56.25 && unit<=78.75){
+       result = "ENE";
+    }
+    if(unit>78.75 && unit<=101.25){
+       result = "E";
+    }
+    if(unit>101.25 && unit<=123.75){
+       result = "ESE";
+    }
+    if(unit>123.75 && unit<=146.25){
+       result = "SE";
+    }
+    if(unit>146.25 && unit<=168.75){
+       result = "SSE";
+    }
+    if(unit>168.75 && unit<=191.25){
+       result = "S";
+    }
+    if(unit>191.25 && unit<=213.75){
+       result = "SSW";
+    }
+    if(unit>213.75 && unit<=236.25){
+       result = "SW";
+    }
+    if(unit>236.25 && unit<=258.75){
+       result = "WSW";
+    }
+    if(unit>258.75 && unit<=281.25){
+       result = "W";
+    }
+    if(unit>281.25 && unit<=303.75){
+       result = "WNW";
+    } 
+    if(unit>303.75 && unit<=326.25){
+       result = "NW";
+    } 
+    if(unit>326.25 && unit<348.75){
+       result = "NNW";
+    }  
+    return result;
   }
 }

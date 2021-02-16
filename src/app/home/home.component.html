@@ -1,27 +1,64 @@
-<div style="display:flex; flex-direction:row; align-items: center; justify-content: center">
-<mat-tab-group animationDuration="0ms">
+<div style="display:flex; flex-direction:row; align-items: center; justify-content: center;  background-color: #004f69">
+<mat-tab-group style="width:100%; background-color: #004f69" animationDuration="0ms">
   <mat-tab label="Today">
 
-        <h1>Today in {{cityname}}, {{country}}</h1>
+        
+       
+        <!--<p>Weather: {{cityWeather["current"]["weather"][0]["main"]}}</p>-->
 
-        <p>Weather: {{cityWeather["current"]["weather"][0]["main"]}}</p>
-        <p>Temp: {{cityWeather["current"]["temp"]}} celcius</p>
-        <p>Wind speed: {{cityWeather["current"]["wind_speed"]}} </p>
-        <p>Timezone: {{cityWeather["timezone"]}}</p>
-        <p>Sunrise: {{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} </p>
+        <div class="CurrentConditions--card">
+            <div><h1 class="CurrentConditions--location">{{cityname}} Weather</h1></div>
+            <div class="CurrentConditions--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between">
+                  <div>
+                    <p class="CurrentConditions--tempValue" >{{cityWeather["current"]["temp"]}} &#8451; </p>
+                    <p class="CurrentConditions--description">{{cityWeather['current']['weather'][0]['description']}}</p> 
+                  </div>
+                  <div class="CurrentConditions--icon">  
+                      <img  style="max-width: 100%; max-height:100%; display:block;" src="http://openweathermap.org/img/wn/{{cityWeather['current']['weather'][0]['icon']}}@2x.png"/>
+                  </div>
+            </div>
+                
+
+        </div>
+
+        <div class="detailsCard">
+            <div><h1 >Weather Today in {{cityname}} </h1></div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between">
+                  <div>
+                    <p >{{cityWeather["current"]["feels_like"]}}&#8451; </p>
+                    <p >Feels Like</p> 
+                  </div>
+                  <div>Sunrise: {{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} Sunset: {{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}</div>
+
+ 
+            </div>
+            <div style="display:flex; flex-wrap: wrap">  
+                       <div class="details-list-item"><div class="details-list-item-label">Pressure</div><div>{{cityWeather["current"]["pressure"]}} mb</div></div>
+                       <div class="details-list-item"><div class="details-list-item-label">Humidity</div><div> {{cityWeather["current"]["humidity"]}}%</div></div>
+                       <div class="details-list-item"><div class="details-list-item-label">Dew Point</div><div> {{cityWeather["current"]["dew_point"]}}&#8451;</div></div>
+                       <div class="details-list-item"><div class="details-list-item-label">UV Index</div><div>  {{cityWeather["current"]["uvi"]}} of 10</div></div>
+                       <div class="details-list-item"><div class="details-list-item-label">Visibility</div><div> {{unitConverter(cityWeather["current"]["visibility"], "divide", 1000)}} km/h</div></div>
+                       <div class="details-list-item"><div class="details-list-item-label">Wind</div><div>{{getWindDirection(cityWeather["current"]["wind_deg"])}} {{unitConverter(cityWeather["current"]["wind_speed"], "multiply", 3.6)}} km/h</div></div>
+            </div>
+                
+
+        </div>
+     
+
         <!--<p>Sunset: {{(cityWeather["current"]["sunset"]+cityWeather["timezone_offset"])* 1000 | date : 'shortTime'}}</p>-->
-        <p>Sunset: {{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}</p>
+
 
   </mat-tab>
   <mat-tab label="Hourly">
 
-        <h1>Next 48 Hours</h1>
+
         <p id="demo"></p>
 
         <div class="scrollmenu">
 
             <div  *ngFor="let hour of cityWeather['hourly']; let i = index">
-                 <div >
+                 <div>
                     <p  *ngIf='i===0'>NOW</p>
                     <p  *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
                     <img src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
