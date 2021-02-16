@@ -23,18 +23,18 @@
         </div>
 
         <div class="detailsCard">
-            <div><h1 >Weather Today in {{cityname}} </h1></div>
-            <div style="display:flex; flex-direction: row; justify-content: space-between">
+            <div class="detailsCard-heading"><span >Weather Today in {{cityname}} </span></div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; margin-left: 36px; margin: 0 26px 25px 16px;">
                   <div>
-                    <p >{{cityWeather["current"]["feels_like"]}}&#8451; </p>
-                    <p >Feels Like</p> 
+                    <p class="details-feelsLike">{{cityWeather["current"]["feels_like"]}}&#8451; </p>
+                    <p class="details-feelsLike-label" >Feels Like</p> 
                   </div>
                   <div>Sunrise: {{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} Sunset: {{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}</div>
 
  
             </div>
             <div style="display:flex; flex-wrap: wrap">  
-                       <div class="details-list-item"><svg class="details-list-item-icon" viewBox="0 0 24 24"><path d="M8.462 18.293l-.29-.002c-.6-.004-1.043-.007-1.259-.007-1.119 0-1.182-1.015-.34-1.734l.196-.164.508-.425 1.543-1.292c1.014-.846 1.74-1.45 2.073-1.723.735-.601 1.305-.596 2.033.022.387.329.959.805 2.207 1.841a377.936 377.936 0 0 1 2.18 1.816c.796.67.742 1.66-.295 1.66h-2.382v1.77c0 .83-.393 1.223-1.258 1.223h-2.994c-.809 0-1.258-.42-1.258-1.207v-1.773l-.664-.005zm0-12.807l-.29.002c-.6.004-1.043.006-1.259.006-1.119 0-1.182 1.016-.34 1.734l.196.164.508.426 1.543 1.29a348.68 348.68 0 0 0 2.073 1.724c.735.601 1.305.596 2.033-.022.387-.328.959-.805 2.207-1.84a377.937 377.937 0 0 0 2.18-1.817c.796-.67.742-1.659-.295-1.659h-2.382v-1.77c0-.832-.393-1.224-1.258-1.224h-2.994c-.809 0-1.258.42-1.258 1.207V5.48l-.664.005z" ></path></svg><div class="details-list-item-label">Pressure</div><div>{{cityWeather["current"]["pressure"]}} mb</div></div>
+                       <div class="details-list-item"><svg class="details-list-item-icon" viewBox="0 0 24 24"><path d="M8.462 18.293l-.29-.002c-.6-.004-1.043-.007-1.259-.007-1.119 0-1.182-1.015-.34-1.734l.196-.164.508-.425 1.543-1.292c1.014-.846 1.74-1.45 2.073-1.723.735-.601 1.305-.596 2.033.022.387.329.959.805 2.207 1.841a377.936 377.936 0 0 1 2.18 1.816c.796.67.742 1.66-.295 1.66h-2.382v1.77c0 .83-.393 1.223-1.258 1.223h-2.994c-.809 0-1.258-.42-1.258-1.207v-1.773l-.664-.005zm0-12.807l-.29.002c-.6.004-1.043.006-1.259.006-1.119 0-1.182 1.016-.34 1.734l.196.164.508.426 1.543 1.29a348.68 348.68 0 0 0 2.073 1.724c.735.601 1.305.596 2.033-.022.387-.328.959-.805 2.207-1.84a377.937 377.937 0 0 0 2.18-1.817c.796-.67.742-1.659-.295-1.659h-2.382v-1.77c0-.832-.393-1.224-1.258-1.224h-2.994c-.809 0-1.258.42-1.258 1.207V5.48l-.664.005z" ></path></svg><div class="details-list-item-label">Pressure</div><div>{{cityWeather["current"]["pressure"]}} hPa</div></div>
                        
 <div class="details-list-item"><svg class="details-list-item-icon" viewBox="0 0 24 24"><path fill-rule="evenodd"  d="M11.743 17.912a4.182 4.182 0 0 1-2.928-1.182 3.972 3.972 0 0 1-.614-4.962.743.743 0 0 1 .646-.349c.234 0 .476.095.66.275l4.467 4.355c.385.376.39.998-.076 1.275a4.216 4.216 0 0 1-2.155.588M11.855 4c.316 0 .61.14.828.395.171.2.36.416.562.647 1.857 2.126 4.965 5.684 4.965 8.73 0 3.416-2.85 6.195-6.353 6.195-3.505 0-6.357-2.78-6.357-6.195 0-3.082 2.921-6.406 4.854-8.605.242-.275.47-.535.673-.772A1.08 1.08 0 0 1 11.855 4"></path></svg><div class="details-list-item-label">Humidity</div><div> {{cityWeather["current"]["humidity"]}}%</div></div>
                        
