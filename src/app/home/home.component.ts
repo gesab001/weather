@@ -62,6 +62,10 @@ export class HomeComponent implements OnInit {
         myDate.setHours( myDate.getHours() + index );  
         return myDate;
  }
+ getToday(date: any){
+	let myDate = new Date(date);
+    return myDate;	
+ }  
  getDay(date: any, index: number){
         let myDate =  new Date(date);
         myDate.setDate(myDate.getDate() + index);
@@ -200,5 +204,34 @@ export class HomeComponent implements OnInit {
        result = "NNW";
     }  
     return result;
+  }
+
+  isNewDay(time){
+     if (time=="12AM"){
+        return true;
+     }
+  }
+
+  getDayName(d){
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    var n = weekday[d.getDay()];
+	return n;
+  }
+
+  getDateNumber(d){
+	return d.getDate();  
+  }
+  
+  getMonthName(today){
+  return today.toLocaleString('default', { month: 'long' }); 
+   
   }
 }

@@ -72,13 +72,20 @@
                
 
             <div class="detailsCard-heading"><span >Hourly Weather in {{cityname}} </span></div>
-            <div>{{cityWeather['hourly'] | json }}</div>
+           <!-- <div>{{cityWeather['hourly'] | json }}</div>-->
             <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
+            
+			<div>{{getDayName(getToday(today))}}, {{getDateNumber(getToday(today))}} {{getMonthName(getToday(today))}} </div>
+            <div *ngFor="let hour of cityWeather['hourly']; let i = index">
+				  <div *ngIf="isNewDay(getHour(today, i) | date : 'ha')">{{getDayName(getHour(today, i))}}, {{getDateNumber(getHour(today, i))}} {{getMonthName(getHour(today, i))}}</div>
+			      <div>{{getHour(today, i) | date : 'ha'}}</div>
+            </div>
             <mat-accordion style="width:50%">
+
                   <mat-expansion-panel *ngFor="let hour of cityWeather['hourly']; let i = index" (opened)="panelOpenState = true"
                                        (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
- 
+                 
                     <mat-panel-description style="padding: 10px 16px;">
                         <div style="display:flex; width: 100%; flex-direction: row; justify-content: space-between; align-items: center">
                               <div>{{getHour(today, i) | date : 'ha'}} </div>
