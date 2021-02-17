@@ -14,6 +14,7 @@ import {Observable} from 'rxjs';
   providers: [CityweatherService, CitiesService]
 })
 export class HomeComponent implements OnInit {
+  panelOpenState = false;
  filteredcities: City[];
  today: number;
   lat: string;

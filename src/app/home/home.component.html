@@ -29,12 +29,20 @@
                     <p class="details-feelsLike">{{cityWeather["current"]["feels_like"]}}&#8451; </p>
                     <p class="details-feelsLike-label" >Feels Like</p> 
                   </div>
-                  <div>Sunrise: {{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} Sunset: {{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}</div>
+                  <div style="display:flex; flex-direction: column; align-items: center; justify-content: center">
+                    <div>
+                        <svg class="sunrisesunset-graph" width="107" height="67"><path class="sunrisesunset-graph-path" style="transform-origin: 40px 40px 0px;" d="M -13.5 26.5 a 1 1 0 0 0 80 0"></path><g style="transform: translate(50.4355px, 2.51082px);"><svg><circle cx="12" cy="12" r="12" fill="#FFF"></circle><path fill="#F7C044" d="M18.405 17.661a1 1 0 0 1-1.437 1.391l-1.665-1.72a1 1 0 1 1 1.437-1.39l1.665 1.72zm-5.541 2.651a1 1 0 0 1-2 0v-2.366a1 1 0 1 1 2 0v2.366zm-6.718-1.624a1 1 0 0 1-1.357-1.469l1.758-1.624a1 1 0 1 1 1.357 1.47l-1.758 1.623zm-2.753-5.769a1 1 0 1 1 .002-2l2.422.001a1 1 0 0 1-.001 2l-2.423-.001zm1.77-6.115A1 1 0 0 1 6.6 5.414l1.664 1.719a1 1 0 0 1-1.436 1.391l-1.665-1.72zm5.751-3.391a1 1 0 1 1 2 0v2.366a1 1 0 0 1-2 0V3.413zm6.5 1.903a1 1 0 1 1 1.356 1.47l-1.757 1.623a1 1 0 1 1-1.357-1.47l1.758-1.623zm3.005 6.114a1 1 0 0 1-.002 2l-2.422-.001a1 1 0 0 1 .001-2l2.423.001z"></path><ellipse fill="#F7C044" cx="11.85" cy="11.935" rx="3.225" ry="3.256"></ellipse></svg></g></svg>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 24 24" class="sunriseSunset-icon"><path d="M10.862 6.052v5.329a.75.75 0 0 0 1.5 0V6.036l1.772 1.534a.75.75 0 0 0 .982-1.134l-3.003-2.601a.75.75 0 0 0-.982 0L8.128 6.436A.75.75 0 0 0 9.11 7.57l1.752-1.518zM21 19.128a.75.75 0 0 0 0-1.5H3.167a.75.75 0 1 0 0 1.5H21z"></path></svg>
+{{(cityWeather["current"]["sunrise"]* 1000) | date : 'shortTime'}} <svg viewBox="0 0 24 24" class="sunriseSunset-icon"><path d="M10.862 9.853L9.044 8.278a.75.75 0 1 0-.982 1.134l3.003 2.602a.75.75 0 0 0 .982 0l3.004-2.602a.75.75 0 0 0-.983-1.134l-1.706 1.478V4a.75.75 0 0 0-1.5 0v5.853zM21 19.075a.75.75 0 1 0 0-1.5H3.167a.75.75 0 1 0 0 1.5H21z"></path></svg>{{(cityWeather["current"]["sunset"]*1000) | date : 'shortTime'}}
+                    </div>
+                </div>
 
  
             </div>
             <div style="display:flex; flex-wrap: wrap">  
-                       <div class="details-list-item"><svg class="details-list-item-icon" viewBox="0 0 24 24"><path d="M8.462 18.293l-.29-.002c-.6-.004-1.043-.007-1.259-.007-1.119 0-1.182-1.015-.34-1.734l.196-.164.508-.425 1.543-1.292c1.014-.846 1.74-1.45 2.073-1.723.735-.601 1.305-.596 2.033.022.387.329.959.805 2.207 1.841a377.936 377.936 0 0 1 2.18 1.816c.796.67.742 1.66-.295 1.66h-2.382v1.77c0 .83-.393 1.223-1.258 1.223h-2.994c-.809 0-1.258-.42-1.258-1.207v-1.773l-.664-.005zm0-12.807l-.29.002c-.6.004-1.043.006-1.259.006-1.119 0-1.182 1.016-.34 1.734l.196.164.508.426 1.543 1.29a348.68 348.68 0 0 0 2.073 1.724c.735.601 1.305.596 2.033-.022.387-.328.959-.805 2.207-1.84a377.937 377.937 0 0 0 2.18-1.817c.796-.67.742-1.659-.295-1.659h-2.382v-1.77c0-.832-.393-1.224-1.258-1.224h-2.994c-.809 0-1.258.42-1.258 1.207V5.48l-.664.005z" ></path></svg><div class="details-list-item-label">Pressure</div><div>{{cityWeather["current"]["pressure"]}} hPa</div></div>
+                       <div class="details-list-item"><svg class="details-list-item-icon" viewBox="0 0 24 24"><path d="M8.462 18.293l-.29-.002c-.6-.004-1.043-.007-1.259-.007-1.119 0-1.182-1.015-.34-1.734l.196-.164.508-.425 1.543-1.292c1.014-.846 1.74-1.45 2.073-1.723.735-.601 1.305-.596 2.033.022.387.329.959.805 2.207 1.841a377.936 377.936 0 0 1 2.18 1.816c.796.67.742 1.66-.295 1.66h-2.382v1.77c0 .83-.393 1.223-1.258 1.223h-2.994c-.809 0-1.258-.42-1.258-1.207v-1.773l-.664-.005zm0-12.807l-.29.002c-.6.004-1.043.006-1.259.006-1.119 0-1.182 1.016-.34 1.734l.196.164.508.426 1.543 1.29a348.68 348.68 0 0 0 2.073 1.724c.735.601 1.305.596 2.033-.022.387-.328.959-.805 2.207-1.84a377.937 377.937 0 0 0 2.18-1.817c.796-.67.742-1.659-.295-1.659h-2.382v-1.77c0-.832-.393-1.224-1.258-1.224h-2.994c-.809 0-1.258.42-1.258 1.207V5.48l-.664.005z" ></path></svg><div class="details-list-item-label">Pressure</div><div>{{cityWeather["current"]["pressure"]}} hPa   </div></div>
                        
 <div class="details-list-item"><svg class="details-list-item-icon" viewBox="0 0 24 24"><path fill-rule="evenodd"  d="M11.743 17.912a4.182 4.182 0 0 1-2.928-1.182 3.972 3.972 0 0 1-.614-4.962.743.743 0 0 1 .646-.349c.234 0 .476.095.66.275l4.467 4.355c.385.376.39.998-.076 1.275a4.216 4.216 0 0 1-2.155.588M11.855 4c.316 0 .61.14.828.395.171.2.36.416.562.647 1.857 2.126 4.965 5.684 4.965 8.73 0 3.416-2.85 6.195-6.353 6.195-3.505 0-6.357-2.78-6.357-6.195 0-3.082 2.921-6.406 4.854-8.605.242-.275.47-.535.673-.772A1.08 1.08 0 0 1 11.855 4"></path></svg><div class="details-list-item-label">Humidity</div><div> {{cityWeather["current"]["humidity"]}}%</div></div>
                        
@@ -54,19 +62,50 @@
 
 
   </mat-tab>
+
   <mat-tab label="Hourly">
 
 
         <p id="demo"></p>
+ 
+        <div class="detailsCard">
+               
 
-        <div class="scrollmenu">
-
-            <div  *ngFor="let hour of cityWeather['hourly']; let i = index">
+            <div class="detailsCard-heading"><span >Hourly Weather in {{cityname}} </span></div>
+            <div>{{cityWeather['hourly'] | json }}</div>
+            <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
+            <mat-accordion style="width:50%">
+                  <mat-expansion-panel *ngFor="let hour of cityWeather['hourly']; let i = index" (opened)="panelOpenState = true"
+                                       (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+ 
+                    <mat-panel-description style="padding: 10px 16px;">
+                        <div style="display:flex; width: 100%; flex-direction: row; justify-content: space-between; align-items: center">
+                              <div>{{getHour(today, i) | date : 'ha'}} </div>
+                              <div>{{hour["temp"] | number:'1.0-0'}}&#176;</div>
+                              <div><img style="width:50%" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/></div>
+                              <div>  {{hour["weather"][0]["main"]}}</div>
+                              <div><svg class="details-list-item-icon"  viewBox="0 0 24 24"><path d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742" stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path></svg> {{getWindDirection(hour["wind_deg"])}} {{unitConverter(hour["wind_speed"], "multiply", 3.6)}} km/h</div>
+                             
+                        </div>
+                       
+                        
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                        <div style="display:flex; width: 100%; flex-direction: row; justify-content: space-between; align-items: center">
+                             <div style="display: flex; flex-direction: row"><svg style="width:20px" viewBox="0 0 24 24"><path d="M9.94 15.406v.323c.974.358 1.671 1.325 1.671 2.461 0 1.441-1.122 2.61-2.505 2.61-1.384 0-2.506-1.169-2.506-2.61 0-1.136.697-2.103 1.67-2.461v-.323a2.088 2.088 0 0 1-1.252-1.914V5.488a2.088 2.088 0 1 1 4.176 0v8.004c0 .856-.516 1.592-1.253 1.914zM9.15 4.9a.75.75 0 0 0-.75.75v5.33h1.5V5.65a.75.75 0 0 0-.75-.75zM15.4 8a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6zm0-1.8a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path></svg><div style="display:flex; flex-direction: column"><span>Feels like</span>{{hour["feels_like"]}}<span></span></div> </div>
+                             <div>Humidity </div>
+                             <div>UV Index </div>
+                             <div>Visibility </div>
+                        </div>
+                  </mat-expansion-panel>
+            </mat-accordion>
+            <div  >
                  <div>
-                    <p  *ngIf='i===0'>NOW</p>
-                    <p  *ngIf='i!=0'>{{getHour(today, i) | date : 'ha'}}</p>
-                    <img src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
-                    <p >{{hour["temp"] | number:'1.0-0'}}&#176;</p> 
+                   
+                   
+                    
+                   
                  </div>
             </div>
         </div>

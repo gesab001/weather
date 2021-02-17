@@ -9,6 +9,8 @@ import { MessageService }       from './message.service';
 import {MatListModule} from '@angular/material/list'; 
 
 
+import {MatExpansionModule} from '@angular/material/expansion'; 
+
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
@@ -43,6 +45,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     FormsModule,
     MatTabsModule,
     ReactiveFormsModule,
+    MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [HttpErrorHandler, MessageService],
