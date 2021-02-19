@@ -7,15 +7,16 @@
         <!--<p>Weather: {{cityWeather["current"]["weather"][0]["main"]}}</p>-->
 
         <div class="CurrentConditions--card">
+
             <div><h1 class="CurrentConditions--location">{{cityname}} Weather</h1></div>
             <div class="CurrentConditions--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
             <div style="display:flex; flex-direction: row; justify-content: space-between">
                   <div>
-                    <p class="CurrentConditions--tempValue" >{{cityWeather["current"]["temp"]}} &#8451; </p>
+                    <p class="CurrentConditions--tempValue" >{{cityWeather["current"]["temp"]  | number:'1.0-0'}} &#8451; </p>
                     <p class="CurrentConditions--description">{{cityWeather['current']['weather'][0]['description']}}</p> 
                   </div>
                   <div class="CurrentConditions--icon">  
-                      <img  style="max-width: 100%; max-height:100%; display:block;" src="http://openweathermap.org/img/wn/{{cityWeather['current']['weather'][0]['icon']}}@2x.png"/>
+                      <img  style="max-width: 100%; max-height:100%; display:block;" src="https://openweathermap.org/img/wn/{{cityWeather['current']['weather'][0]['icon']}}@2x.png"/>
                   </div>
             </div>
                 
@@ -26,7 +27,8 @@
             <div class="detailsCard-heading"><span >Weather Today in {{cityname}} </span></div>
             <div style="display:flex; flex-direction: row; justify-content: space-between; margin-left: 36px; margin: 0 26px 25px 16px;">
                   <div>
-                    <p class="details-feelsLike">{{cityWeather["current"]["feels_like"]}}&#8451; </p>
+
+                    <p class="details-feelsLike">{{cityWeather["current"]["feels_like"]  | number:'1.0-0'}}&#8451; </p>
                     <p class="details-feelsLike-label" >Feels Like</p> 
                   </div>
                   <div style="display:flex; flex-direction: column; align-items: center; justify-content: center">
@@ -75,7 +77,7 @@
            <!-- <div>{{cityWeather['hourly'] | json }}</div>-->
             <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
             
-			<div style="padding-top:20px" ><h2 style="font-weight: bold">{{getDayName(getToday(today))}}, {{getDateNumber(getToday(today))}} {{getMonthName(getToday(today))}}</h2> </div>
+			<div style="padding-top:20px; " ><h2 style="font-weight: bold">{{getDayName(getToday(today))}}, {{getDateNumber(getToday(today))}} {{getMonthName(getToday(today))}}</h2> </div>
             <div *ngFor="let hour of cityWeather['hourly']; let i = index">
 				  <div  style="padding-top:20px"  *ngIf="isNewDay(getHour(today, i) | date : 'ha')"><h2 style="font-weight: bold">{{getDayName(getHour(today, i))}}, {{getDateNumber(getHour(today, i))}} {{getMonthName(getHour(today, i))}}</h2>
 				  
@@ -86,18 +88,18 @@
 
 							  <mat-expansion-panel  (opened)="panelOpenState = true"
 												   (closed)="panelOpenState = false">
-								<mat-expansion-panel-header>
+								<mat-expansion-panel-header style="    padding-left: 0px">
 							 
 								<mat-panel-description style="padding: 10px 16px;">
-									<div style="display:flex; width: 100%; flex-direction: row; justify-content: center; align-items: center;">
-										  <div class="Hourly-description-item">{{getHour(today, i) | date : 'ha'}} </div>
-										  <div class="Hourly-description-item">{{hour["temp"] | number:'1.0-0'}}&#176;</div>
-										  <div class="Hourly-description-item">
-										     <img style="width:25%" src="http://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
+									<div style="display:flex; width: 100%; flex-direction: row; align-items: center;">
+										  <div class="Hourly-description-item-time">{{getHour(today, i) | date : 'ha'}} </div>
+										  <div class="Hourly-description-item-temp">{{hour["temp"] | number:'1.0-0'}}&#176;</div>
+										  <div class="Hourly-description-item-icon">
+										     <img style="width:25%" src="https://openweathermap.org/img/wn/{{hour['weather'][0]['icon']}}@2x.png"/>
 										     <span>  {{hour["weather"][0]["main"]}}</span>
 										  </div>
 										  
-										  <div class="Hourly-description-item"><svg class="details-list-item-icon"  viewBox="0 0 24 24"><path d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742" stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path></svg> {{getWindDirection(hour["wind_deg"])}} {{unitConverter(hour["wind_speed"], "multiply", 3.6)}} km/h</div>
+										  <div class="Hourly-description-item-wind"><svg class="details-list-item-icon"  viewBox="0 0 24 24"><path d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742" stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path></svg> {{getWindDirection(hour["wind_deg"])}} {{unitConverter(hour["wind_speed"], "multiply", 3.6)}} km/h</div>
 										 
 									</div>
 								   
@@ -151,21 +153,21 @@
 
 							  <mat-expansion-panel  (opened)="panelOpenState = true"
 												   (closed)="panelOpenState = false">
-								<mat-expansion-panel-header>
+								<mat-expansion-panel-header style="padding-left:0px">
 							 
 								<mat-panel-description style="padding: 10px 16px;">
 									<div style="display:flex; width: 100%; flex-direction: row; justify-content: center; align-items: center;">
-										  <div class="Hourly-description-item">
+										  <div style="flex:25%">
 										  <div *ngIf="isTodaySame(getDateNumber(getToday(item['dt']*1000)), getDateNumber(getToday(today)))">Today</div>
 										  <div *ngIf="isNextDay(getDateNumber(getToday(item['dt']*1000)), getDateNumber(getToday(today)))">{{getDayName(getToday(item["dt"]*1000))}} {{getDateNumber(getToday(item["dt"]*1000))}}</div> 
 										  </div>
-										  <div class="Hourly-description-item"><span style="font-weight: 700; font-size: 1.25rem">{{item["temp"]["day"] | number:'1.0-0'}}&#176;</span> / <span>{{item["temp"]["night"] | number:'1.0-0'}}&#176;</span></div>
-										  <div class="Hourly-description-item">
-										     <img style="width:25%" src="http://openweathermap.org/img/wn/{{item['weather'][0]['icon']}}@2x.png"/>
-										     <span>  {{item["weather"][0]["main"]}}</span>
+										  <div class="Daily-description-item-temp"><span style="font-weight: 700; font-size: 1.25rem">{{item["temp"]["day"] | number:'1.0-0'}}&#176;</span> / <span>{{item["temp"]["night"] | number:'1.0-0'}}&#176;</span></div>
+										  <div class="Daily-description-item-icon">
+										     <img class="Daily-description-item-image"  src="https://openweathermap.org/img/wn/{{item['weather'][0]['icon']}}@2x.png"/>
+										     <span class="Daily-description-item-main">  {{item["weather"][0]["main"]}}</span>
 										  </div>
 										  
-										  <div class="Hourly-description-item"><svg class="details-list-item-icon"  viewBox="0 0 24 24"><path d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742" stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path></svg> {{getWindDirection(item["wind_deg"])}} {{unitConverter(item["wind_speed"], "multiply", 3.6)}} km/h</div>
+										  <div class="Hourly-description-item-wind"><svg class="details-list-item-icon"  viewBox="0 0 24 24"><path d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742" stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path></svg> {{getWindDirection(item["wind_deg"])}} {{unitConverter(item["wind_speed"], "multiply", 3.6)}} km/h</div>
 										 
 									</div>
 								   

@@ -6,6 +6,8 @@ import { City } from '../cities/cities';
 import { CitiesService} from '../cities/cities.service';
 import { filter, map } from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,12 +23,14 @@ export class HomeComponent implements OnInit {
   lon: string;  
   cityname: string;
   defaultLocation: JSON;
+  safeSrc: SafeResourceUrl;
+  stringurl: string;
   state: string;
   country: string;
   cityWeather: CityWeather[];
   subscription;
   subscriptionCityName;
-  constructor(private route: ActivatedRoute, private cityweatherService: CityweatherService, private citiesService: CitiesService) { }
+  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private cityweatherService: CityweatherService, private citiesService: CitiesService) { }
 
   ngOnInit(): void {
      this.today = Date.now();
@@ -44,6 +48,7 @@ export class HomeComponent implements OnInit {
      this.cityname = this.defaultLocation["items"][0]["city"];
      this.state = this.defaultLocation["items"][0]["state"];
      this.country = this.defaultLocation["items"][0]["country"];
+
      this.loadData();*/
      this.getLocation();
 
@@ -77,7 +82,7 @@ export class HomeComponent implements OnInit {
  }
  loadData(lat, lon) {
     this.subscription = this.cityweatherService.getCities(lat, lon).subscribe(
-      res => (this.cityWeather = res),
+      res => (this.cityWeather = res, this.safeSrc = this.getSafeSrc(this.cityWeather['current']['weather'][0]['icon'])),
       error => console.log(error),
     );
   }
@@ -246,5 +251,16 @@ export class HomeComponent implements OnInit {
 		  return true;
 	  }
   }
+
+  getCurrentWeatherIcon(){
+      return "http://openweathermap.org/img/wn/10d@2x.png";
+  }
+
+  getSafeSrc(weatherIcon: string): SafeResourceUrl {
+     this.stringurl = "http://openweathermap.org/img/wn/"+weatherIcon+"@2x.png";
+     this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(this.stringurl);
+     return this.safeSrc;
+  }
+
 }
 

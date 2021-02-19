@@ -27,12 +27,35 @@
   background-color: hsla(0,0%,100%,.1)
   border-radius: 6px
   box-shadow: 0 0 12px 0 rgba(0,0,0,.2)
+  @media screen and (max-width: 989px)
+     margin: 10px
+     padding: 10px
+
+.CurrentConditions--tempValue
+  font-size: 6rem
+  line-height: .96em
+  font-weight: 500
+  color: #fff
+  @media screen and (max-width: 989px)
+    font-size: 3.5rem
+
+.CurrentConditions--description
+ font-size: 1.5rem
+ font-weight: 700
+ color: #fff
+ line-height: 1.5 
+
+.CurrentConditions--icon
+ height: 100px
+ width: 100px
 
 .detailsCard
   padding: 20px
   margin: 50px
   background-color: white
-
+  @media screen and (max-width: 989px)
+     margin: 10px
+     padding: 10px
   border-radius: 6px
   box-shadow: 0 0 12px 0 rgba(0,0,0,.2)
 
@@ -90,21 +113,7 @@
   fill: #2b2b2b
   color: #2b2b2b
 
-.CurrentConditions--tempValue
-  font-size: 6rem
-  line-height: .96em
-  font-weight: 500
-  color: #fff
 
-.CurrentConditions--description
- font-size: 1.5rem
- font-weight: 700
- color: #fff
- line-height: 1.5 
-
-.CurrentConditions--icon
- height: 100px
- width: 100px
 
 .mat-tab-labels
  justify-content: space-between
@@ -124,3 +133,47 @@
 
 .Hourly-description-item
   flex: 25%
+
+.Hourly-description-item-time
+  flex: 25%
+  @media screen and (max-width: 989px)  
+    flex: 10%
+.Hourly-description-item-temp
+  flex: 25%
+  @media screen and (max-width: 989px)  
+    flex: 10%
+	
+.Hourly-description-item-icon
+  flex: 25%
+
+.Hourly-description-item-wind
+  flex: 25%  
+  @media screen and (max-width: 989px)  
+    flex: 40%  
+
+.Daily-description-item-day
+  flex: 25%  
+
+	
+.Daily-description-item-temp
+  flex: 25%  
+ 
+
+.Daily-description-item-icon
+  flex: 25%  
+  @media screen and (max-width: 989px)  
+    flex: 10%  
+	
+.Daily-description-item-main
+  display: inline-block
+  @media screen and (max-width: 989px) 	
+    display: none
+
+.Daily-description-item-image
+  width: 25%
+  @media screen and (max-width: 989px) 	
+    width: 100%
+	
+.mat-expansion-panel-header
+  @media screen and (max-width: 989px)  
+    padding-left: 0px
