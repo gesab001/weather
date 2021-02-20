@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   subscription;
   subscriptionGeoCoding;
   subscriptionCityName;
+  updateMessage = "";
   constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private geolocationService: GeolocationService,  private cityweatherService: CityweatherService, private citiesService: CitiesService) { }
 
   ngOnInit(): void {
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit {
  }
  loadData(lat, lon) {
     this.subscription = this.cityweatherService.getCities(lat, lon).subscribe(
-      res => (this.cityWeather = null, this.cityWeather = res, this.safeSrc = this.getSafeSrc(this.cityWeather['current']['weather'][0]['icon'])),
+      res => (this.cityWeather = null, this.cityWeather = res, this.safeSrc = this.getSafeSrc(this.cityWeather['current']['weather'][0]['icon']), this.updateMessage = ""),
       error => console.log(error),
     );
   }
@@ -279,13 +280,23 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  updateWeather(){
+  updateWeather(device){
+    if(device==="mobile"){
+     // alert("update weather mobile");
+      this.updateMessage = "...updating";
+      location.reload();
+    }else{
+		//alert("update weather");
+        this.updateMessage = "...updating";
 
-    this.subscription.unsubscribe();
-    this.subscriptionGeoCoding.unsubscribe();
-    this.getLocation();
-    console.log(this.cityWeather);
+		this.subscription.unsubscribe();
+		this.subscriptionGeoCoding.unsubscribe();
+		this.getLocation();
+		console.log(this.cityWeather);
+    }
   }
+  
+
 
 }
 
