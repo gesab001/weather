@@ -25,14 +25,16 @@ import { FavoriteLocationsComponent } from './favorite-locations/favorite-locati
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
-import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatTabsModule} from '@angular/material/tabs';
+import { GeolocationComponent } from './geolocation/geolocation.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     CitiesComponent,
     CityweatherComponent,
     FavoriteLocationsComponent,
-    HomeComponent
+    HomeComponent,
+    GeolocationComponent
   ],
   imports: [
     BrowserModule,

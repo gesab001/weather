@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CityWeather } from '../cityweather/cityweather';
 import { CityweatherService} from '../cityweather/cityweather.service';
+import { Geolocation } from '../geolocation/geolocation';
+import { GeolocationService} from '../geolocation/geolocation.service';
+
 import { City } from '../cities/cities';
 import { CitiesService} from '../cities/cities.service';
 import { filter, map } from 'rxjs/operators';
@@ -13,10 +16,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
   encapsulation: ViewEncapsulation.None,
-  providers: [CityweatherService, CitiesService]
+  providers: [CityweatherService, CitiesService, GeolocationService]
 })
 export class HomeComponent implements OnInit {
   panelOpenState = false;
+  geocoding = false;
  filteredcities: City[];
  today: number;
   lat: string;
@@ -28,9 +32,11 @@ export class HomeComponent implements OnInit {
   state: string;
   country: string;
   cityWeather: CityWeather[];
+  geolocation: Geolocation[];
   subscription;
+  subscriptionGeoCoding;
   subscriptionCityName;
-  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private cityweatherService: CityweatherService, private citiesService: CitiesService) { }
+  constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private geolocationService: GeolocationService,  private cityweatherService: CityweatherService, private citiesService: CitiesService) { }
 
   ngOnInit(): void {
      this.today = Date.now();
@@ -141,8 +147,10 @@ export class HomeComponent implements OnInit {
       var x = document.getElementById("demo");
 	  if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((position) => {
-		  this.loadData(position.coords.latitude, position.coords.longitude);      this.filterCityName(position.coords.latitude, position.coords.longitude);
-		}, (err) => {this.loadData("-36.8509", "174.7645"); this.cityname= "Auckland"; this.country="NZ";});
+		  this.loadData(position.coords.latitude, position.coords.longitude);
+          this.geocoding = true;
+          this.reverseGeocoding(position.coords.latitude, position.coords.longitude);
+		}, (err) => {this.geocoding = false; this.loadData("-36.8509", "174.7645"); this.cityname= "Auckland"; this.country="NZ";});
 	  } else { 
 		x.innerHTML = "Geolocation is not supported by this browser.";
 	  }
@@ -260,6 +268,13 @@ export class HomeComponent implements OnInit {
      this.stringurl = "http://openweathermap.org/img/wn/"+weatherIcon+"@2x.png";
      this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl(this.stringurl);
      return this.safeSrc;
+  }
+
+  reverseGeocoding(lat, lon){
+   this.subscriptionGeoCoding = this.geolocationService.reverseGeocoding(lat, lon).subscribe(
+      res => (this.geolocation = res, this.cityname = this.geolocation[0]["name"]),
+      error => console.log(error),
+    );
   }
 
 }

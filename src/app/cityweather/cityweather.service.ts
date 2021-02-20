@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { CityWeather } from './cityweather';
+
+
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { tap } from 'rxjs/operators';
@@ -11,6 +13,7 @@ import { filter, map } from 'rxjs/operators';
 @Injectable()
 export class CityweatherService {
 _cities: Observable<CityWeather[]> = null;
+_geolocation: Observable<Geolocation[]> = null;
 
   private handleError: HandleError;
   
@@ -24,6 +27,7 @@ _cities: Observable<CityWeather[]> = null;
 
   clearCache() {
     this._cities = null;
+    this._geolocation = null;
   }
 
   /** GET heroes from the server */
@@ -49,4 +53,5 @@ _cities: Observable<CityWeather[]> = null;
   getCachedCities(){
           return this._cities;
   }
+
 }
