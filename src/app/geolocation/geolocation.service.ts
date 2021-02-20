@@ -17,7 +17,7 @@ import { filter, map } from 'rxjs/operators';
 export class GeolocationService {
   _geolocation: Observable<Geolocation[]> = null;
   private handleError: HandleError;
-  url = 'https://api.openweathermap.org/geo/1.0/reverse?limit=5&appid=68bcecc7386ea3f60442a466d3fc9503&';
+
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
@@ -31,12 +31,12 @@ export class GeolocationService {
 
 
   reverseGeocoding(lat: string, long: string) {
+    var url = 'https://api.openweathermap.org/geo/1.0/reverse?limit=5&appid=68bcecc7386ea3f60442a466d3fc9503&' +"lat="+lat+"&lon="+long;
     this.clearCache();
     if (!this._geolocation) {
-      this.url = this.url +"lat="+lat+"&lon="+long;
-      console.log(this.url);
+      console.log(url);
       this._geolocation = this.http
-        .get<Geolocation[]>(this.url)
+        .get<Geolocation[]>(url)
         .pipe(publishReplay(1), refCount());
     }
     return this._geolocation;

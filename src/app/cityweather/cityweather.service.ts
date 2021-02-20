@@ -18,7 +18,7 @@ _geolocation: Observable<Geolocation[]> = null;
   private handleError: HandleError;
   
   /**url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=68bcecc7386ea3f60442a466d3fc9503&id=';*/
-  url = 'https://api.openweathermap.org/data/2.5/onecall?units=metric&exclude=minutely&appid=68bcecc7386ea3f60442a466d3fc9503&';
+  
   constructor(
     private http: HttpClient,
     httpErrorHandler: HttpErrorHandler) {
@@ -31,20 +31,20 @@ _geolocation: Observable<Geolocation[]> = null;
   }
 
   /** GET heroes from the server */
-  getCityList (): Observable<CityWeather[]> {
+/** getCityList (): Observable<CityWeather[]> {
     return this.http.get<CityWeather[]>(this.url)
       .pipe(
         catchError(this.handleError('getCityList', []))
       );
-  }
+  }*/
  
   getCities(lat: string, long: string) {
+    var url = 'https://api.openweathermap.org/data/2.5/onecall?units=metric&exclude=minutely&appid=68bcecc7386ea3f60442a466d3fc9503&' +"lat="+lat+"&lon="+long;
     this.clearCache();
     if (!this._cities) {
-      this.url = this.url +"lat="+lat+"&lon="+long;
-      console.log(this.url);
+      console.log(url);
       this._cities = this.http
-        .get<CityWeather[]>(this.url)
+        .get<CityWeather[]>(url)
         .pipe(publishReplay(1), refCount());
     }
     return this._cities;

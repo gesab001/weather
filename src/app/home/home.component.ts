@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
  }
  loadData(lat, lon) {
     this.subscription = this.cityweatherService.getCities(lat, lon).subscribe(
-      res => (this.cityWeather = res, this.safeSrc = this.getSafeSrc(this.cityWeather['current']['weather'][0]['icon'])),
+      res => (this.cityWeather = null, this.cityWeather = res, this.safeSrc = this.getSafeSrc(this.cityWeather['current']['weather'][0]['icon'])),
       error => console.log(error),
     );
   }
@@ -147,6 +147,8 @@ export class HomeComponent implements OnInit {
       var x = document.getElementById("demo");
 	  if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((position) => {
+          console.log("lat: " + position.coords.latitude);
+          console.log("long: " + position.coords.longitude);
 		  this.loadData(position.coords.latitude, position.coords.longitude);
           this.geocoding = true;
           this.reverseGeocoding(position.coords.latitude, position.coords.longitude);
@@ -275,6 +277,14 @@ export class HomeComponent implements OnInit {
       res => (this.geolocation = res, this.cityname = this.geolocation[0]["name"]),
       error => console.log(error),
     );
+  }
+
+  updateWeather(){
+
+    this.subscription.unsubscribe();
+    this.subscriptionGeoCoding.unsubscribe();
+    this.getLocation();
+    console.log(this.cityWeather);
   }
 
 }

@@ -83,6 +83,9 @@ export class AppComponent implements OnInit {
    } 
   }
 
+  reloadPage(){
+    alert("reload");
+  } 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     console.log('Destroyed');

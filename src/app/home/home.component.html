@@ -8,7 +8,7 @@
 
         <div class="CurrentConditions--card">
 
-            <div><h1 class="CurrentConditions--location">{{cityname}} Weather </h1></div>
+            <div><span class="CurrentConditions--location" (click)="updateWeather()">{{cityname}} Weather </span><span><mat-icon class="cursor: pointer" (click)="updateWeather()" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span></div>
             <div class="CurrentConditions--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
             <div style="display:flex; flex-direction: row; justify-content: space-between">
                   <div>
@@ -73,7 +73,10 @@
         <div class="detailsCard">
                
 
-            <div class="detailsCard-heading"><h1 style="font-weight: bold">Hourly Weather in {{cityname}} </h1></div>
+            <div class="detailsCard-heading">
+                  <span (click)="updateWeather()" style="font-weight: bold; cursor: pointer">Hourly Weather in {{cityname}} </span>
+                  <span><mat-icon class="cursor: pointer" (click)="updateWeather()" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span>
+            </div>
            <!-- <div>{{cityWeather['hourly'] | json }}</div>-->
             <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
             
@@ -138,7 +141,11 @@
        <div class="detailsCard">
                
 
-           <div class="detailsCard-heading"><h1 style="font-weight: bold">7-day Weather in {{cityname}} </h1></div>
+           <div class="detailsCard-heading">
+
+              <span (click)="updateWeather()" style="font-weight: bold; cursor: pointer">7-day Weather in {{cityname}} </span>
+              <span><mat-icon class="cursor: pointer" (click)="updateWeather()" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span>
+              </div>
            <!-- <div>{{cityWeather['hourly'] | json }}</div>-->
                <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
             

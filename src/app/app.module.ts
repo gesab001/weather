@@ -27,6 +27,10 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { GeolocationComponent } from './geolocation/geolocation.component'; 
+
+
+import {MatIconModule} from '@angular/material/icon'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +52,7 @@ import { GeolocationComponent } from './geolocation/geolocation.component';
     MatTabsModule,
     ReactiveFormsModule,
     MatExpansionModule,
+    MatIconModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [HttpErrorHandler, MessageService],
