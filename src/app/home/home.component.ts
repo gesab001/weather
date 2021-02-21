@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CityWeather } from '../cityweather/cityweather';
 import { CityweatherService} from '../cityweather/cityweather.service';
@@ -19,6 +19,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   providers: [CityweatherService, CitiesService, GeolocationService]
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('path') path;
+  @ViewChild('marker') marker;
+
   panelOpenState = false;
   geocoding = false;
   weatherparams = true;
@@ -38,6 +41,32 @@ export class HomeComponent implements OnInit {
   subscriptionGeoCoding;
   subscriptionCityName;
   updateMessage = "";
+  percent = 0;
+	
+  // Move obj element along path based on percentage of total length
+  moveObj()
+	{
+	   const path = this.path.nativeElement;
+       const marker = (this.marker.nativeElement);
+	   console.log(path);
+	   console.log(marker);
+
+	  // Length of path
+      var pathLength = Math.floor( path.getTotalLength() );
+	  var prcnt = (this.percent*pathLength) / 100;
+	  console.log("path length: " + pathLength);
+
+	  // Get x and y values at a certain point in the line
+	  var pt = path.getPointAtLength(prcnt);
+	  pt.x = Math.round(pt.x);
+	  pt.y = Math.round(pt.y);
+	  
+	  marker.style.transform = 'translate('+pt.x+'px,'+pt.y+'px)';
+	  this.percent = this.percent + 1;  
+	}
+
+// Initialize
+
   constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private geolocationService: GeolocationService,  private cityweatherService: CityweatherService, private citiesService: CitiesService) { }
 
   ngOnInit(): void {
@@ -53,8 +82,10 @@ export class HomeComponent implements OnInit {
               console.log("params", params);
               this.loadData(this.lat, this.lon);
               this.weatherparams = true;
+                   
           }else{
               this.getLocation();
+                   
           }
      });
     /* this.defaultLocation = JSON.parse(localStorage.getItem("defaultLocation"));
@@ -65,11 +96,17 @@ export class HomeComponent implements OnInit {
      this.country = this.defaultLocation["items"][0]["country"];
 
      this.loadData();*/
-     
+
 
   }
 
- loadDefaultLocation(){
+  ngAfterViewInit() {
+	  //console.log(this.path.nativeElement);
+        // this returns null
+        this.moveObj();
+    }
+    
+  loadDefaultLocation(){
      var lat = "-36.8509";
      var long = "174.7645";
      this.cityname = "Auckland";

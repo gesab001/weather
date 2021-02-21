@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+
+.SunriseSunset-container {
+  width: 200px;
+  height: 200px;
+}
+
+.SunriseSunset-path {
+   fill: none;
+   stroke: #e87538;
+   stroke-width: 3px;
+}
+.marker {
+  motion-path: path('M100 100 A 40 40 90 0 1 250 100');
+  offset-path: path('M100 100 A 40 40 90 0 1 250 100');
+  animation: move 1s linear infinite;
+}
+
+@keyframes move {
+  100% { 
+    motion-offset: 100%;
+    offset-distance: 100%;
+  }
+</style>
+<body>
+
+<p><strong>Note:</strong> This example does not work in Internet Explorer and Safari.</p>
+
+<button onclick="moveObj()">move</button>
+<div class="SunriseSunset-container">
+  <svg width="200" height="200" viewBox="0 0 300 300">
+    <path id="path" class="SunriseSunset-path" d="M100 100 A 40 40 90 0 1 250 100"/>          
+    <circle id="marker"r="10" fill="#F7C044"></circle>
+  </svg>
+</div>
+</body>
+
+<script>
+
+var path = document.getElementById('path');
+var obj = document.getElementById('marker');
+// Length of path
+var pathLength = Math.floor( path.getTotalLength() );
+var percent = 0;
+// Move obj element along path based on percentage of total length
+function moveObj()
+{
+  var prcnt = (percent*pathLength) / 100;
+
+  // Get x and y values at a certain point in the line
+  pt = path.getPointAtLength(prcnt);
+  pt.x = Math.round(pt.x);
+  pt.y = Math.round(pt.y);
+  
+  obj.style.transform = 'translate('+pt.x+'px,'+pt.y+'px)';
+  percent = percent + 1;  
+}
+
+// Initialize
+moveObj();
+
+</script>
+</html>
+

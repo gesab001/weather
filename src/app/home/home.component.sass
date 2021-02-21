@@ -1,3 +1,26 @@
+
+.SunriseSunset-container 
+  width: 167px
+  height: 67px
+
+
+.SunriseSunset-path 
+   fill: none
+   stroke: #e87538
+   stroke-width: 3px
+
+.marker 
+  motion-path: path('M100 100 A 40 40 90 0 1 250 100')
+  offset-path: path('M100 100 A 40 40 90 0 1 250 100')
+  animation: move 1s linear infinite
+
+
+@keyframes move 
+  100%  
+    motion-offset: 100%
+    offset-distance: 100%
+  
+  
 .desktop
   display: block
   @media screen and (max-width: 989px)
