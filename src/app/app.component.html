@@ -4,10 +4,15 @@
       <!-- <div><a routerLink="" class="nav-links">home </a></div>-->
 
       <!-- <div><a routerLink="/favorites" class="nav-links">favorites </a></div>-->
+           <div >
+			<a (click)="clearInput()"  href="" ><mat-icon  style="color:white" aria-hidden="false" aria-label="Example home icon">home</mat-icon></a>
+		
 
+		   </div>
 		   <div class="searchBox">
 			   <div style="width: 100%;"><input class="searchInputField" onfocus="this.value=''" (keyup)="somethingChanged($event)" placeholder="Search city"></div>
 			   <div style="margin-top: 10px; position:absolute; background-color: grey; max-width:380px; width: 100%;">
+				    
 					<div style="padding-top: 10px" *ngFor="let city of filteredcities ">
 					  <div *ngIf="city.state!=''" >
 						<!--<button (click)="addToFavorites(city.coord.lat, city.coord.lon, city.name, city.state, city.country)">Add</button>-->
@@ -26,3 +31,8 @@
 
 
 <router-outlet></router-outlet>
+
+
+<footer style="padding-top: 100px; width:100%; text-align: center;">
+<span>Copyright © {{getCopyRightYear()}} Giovanni Saberon</span>
+</footer>

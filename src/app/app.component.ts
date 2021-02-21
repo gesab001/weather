@@ -94,4 +94,9 @@ export class AppComponent implements OnInit {
     console.log('Destroyed');
   }
   
+    getCopyRightYear(){
+    var currentYear = new Date();
+    return currentYear.getFullYear();
+  }
+  
 }
