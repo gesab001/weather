@@ -21,8 +21,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   geocoding = false;
- filteredcities: City[];
- today: number;
+  weatherparams = true;
+  filteredcities: City[];
+  today: number;
   lat: string;
   lon: string;  
   cityname: string;
@@ -41,14 +42,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
      this.today = Date.now();
-     /*this.route.paramMap.subscribe(params => { 
+     this.route.paramMap.subscribe(params => { 
+          //console.log(params.length);
+          if(params.get('lat')){
               this.lat = params.get('lat');
               this.lon = params.get('lon');
               this.cityname = params.get('city');
               this.state = params.get('state');
               this.country = params.get('country');
               console.log("params", params);
-     });*/
+              this.loadData(this.lat, this.lon);
+              this.weatherparams = true;
+          }else{
+              this.weatherparams = false;
+              this.getLocation();
+          }
+     });
     /* this.defaultLocation = JSON.parse(localStorage.getItem("defaultLocation"));
      this.lat = this.defaultLocation["items"][0]["lat"];
      this.lon = this.defaultLocation["items"][0]["lon"];
@@ -57,7 +66,7 @@ export class HomeComponent implements OnInit {
      this.country = this.defaultLocation["items"][0]["country"];
 
      this.loadData();*/
-     this.getLocation();
+     
 
   }
 
@@ -281,18 +290,24 @@ export class HomeComponent implements OnInit {
   }
 
   updateWeather(device){
+    this.updateMessage = "...updating";
     if(device==="mobile"){
-     // alert("update weather mobile");
-      this.updateMessage = "...updating";
-      location.reload();
+      if(this.weatherparams){
+        this.loadData(this.lat, this.lon);
+      }else{
+		   // alert("update weather mobile");
+		  location.reload();
+      }
     }else{
-		//alert("update weather");
-        this.updateMessage = "...updating";
-
-		this.subscription.unsubscribe();
-		this.subscriptionGeoCoding.unsubscribe();
-		this.getLocation();
-		console.log(this.cityWeather);
+        if(this.weatherparams){
+           this.loadData(this.lat, this.lon);
+        }else{
+			//alert("update weather");
+			this.subscription.unsubscribe();
+			this.subscriptionGeoCoding.unsubscribe();
+			this.getLocation();
+			console.log(this.cityWeather);
+		}
     }
   }
   

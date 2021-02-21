@@ -83,6 +83,9 @@ export class AppComponent implements OnInit {
    } 
   }
 
+  clearInput(){
+    this.filteredcities = null;
+  }
   reloadPage(){
     alert("reload");
   } 

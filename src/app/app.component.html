@@ -6,16 +6,16 @@
       <!-- <div><a routerLink="/favorites" class="nav-links">favorites </a></div>-->
 
 		   <div class="searchBox">
-			   <div style="width: 100%;"><input class="searchInputField" (keyup)="somethingChanged($event)" placeholder="Search city"></div>
-			   <div style="position:absolute; background-color: white; max-width:380px; width: 100%">
-					<div *ngFor="let city of filteredcities ">
+			   <div style="width: 100%;"><input class="searchInputField" onfocus="this.value=''" (keyup)="somethingChanged($event)" placeholder="Search city"></div>
+			   <div style="margin-top: 10px; position:absolute; background-color: grey; max-width:380px; width: 100%;">
+					<div style="padding-top: 10px" *ngFor="let city of filteredcities ">
 					  <div *ngIf="city.state!=''" >
-						<button (click)="addToFavorites(city.coord.lat, city.coord.lon, city.name, city.state, city.country)">Add</button>
-						<a [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, city.state, city.country]" >{{city.name + ', '+ city.state + ', ' + city.country}}</a>
+						<!--<button (click)="addToFavorites(city.coord.lat, city.coord.lon, city.name, city.state, city.country)">Add</button>-->
+						<a (click)="clearInput()" class="search-result-item" [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, city.state, city.country]" >{{city.name + ', '+ city.state + ', ' + city.country}}</a>
 					  </div>
 					  <div *ngIf="city.state==''">
-						<button (click)="addToFavorites1(city.coord.lat, city.coord.lon, city.name, city.country)">Add</button>
-						<a  [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, '', city.country]" >{{city.name + ', '+ city.country}}</a>
+						<!--<button (click)="addToFavorites1(city.coord.lat, city.coord.lon, city.name, city.country)">Add</button>-->
+						<a   (click)="clearInput()" class="search-result-item" [routerLink]="['/weather', city.coord.lat, city.coord.lon, city.name, '', city.country]" >{{city.name + ', '+ city.country}}</a>
 					  </div>
 					</div>      			   
 			   </div>

@@ -8,6 +8,7 @@ import {FavoriteLocationsComponent} from './favorite-locations/favorite-location
 import {AppComponent} from './app.component';
 const routes: Routes = [
    {path: '', component: HomeComponent},
+   {path: 'weather/:lat/:lon/:city/:state/:country', component: HomeComponent} ,
    {path: 'search', component: CitiesComponent},
    {path: 'weather/:lat/:lon/:city/:state/:country', component: CityweatherComponent} ,
    {path: 'favorites', component: FavoriteLocationsComponent}
