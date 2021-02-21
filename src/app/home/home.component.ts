@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
               this.loadData(this.lat, this.lon);
               this.weatherparams = true;
           }else{
-              this.weatherparams = false;
               this.getLocation();
           }
      });
@@ -154,6 +153,7 @@ export class HomeComponent implements OnInit {
   }
 
   getLocation() {
+      this.weatherparams = false;
       var x = document.getElementById("demo");
 	  if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((position) => {

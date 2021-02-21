@@ -1,5 +1,5 @@
 <div style="display:flex; flex-direction:row; align-items: center; justify-content: center;  background-color: #004f69">
-<mat-tab-group style="width:100%; background-color: #004f69" animationDuration="0ms">
+<mat-tab-group style="width:100%; background-color: #004f69; z-index: 0;" animationDuration="0ms">
   <mat-tab label="Today">
 
         
@@ -8,8 +8,8 @@
 
         <div class="CurrentConditions--card">
 
-            <div class="desktop"><span class="CurrentConditions--location" (click)="updateWeather('desktop')">{{cityname}} Weather </span><span><mat-icon class="cursor: pointer" (click)="updateWeather('desktop')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span></div>
-            <div class="mobile"><span class="CurrentConditions--location" (click)="updateWeather('mobile')">{{cityname}} Weather </span><span><mat-icon class="cursor: pointer" (click)="updateWeather('mobile')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span></div>
+            <div class="desktop"><span class="CurrentConditions--location" (click)="updateWeather('desktop')">{{cityname}} Weather </span><span  ><mat-icon class="refresh-icon" (click)="updateWeather('desktop')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span></div>
+            <div class="mobile"><span class="CurrentConditions--location" (click)="updateWeather('mobile')">{{cityname}} Weather </span><span><mat-icon class="refresh-icon" (click)="updateWeather('mobile')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span></div>
 
             <div class="CurrentConditions--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
             <div style="display:flex; flex-direction: row; justify-content: space-between">
@@ -77,11 +77,11 @@
 
             <div class="desktop"><div class="detailsCard-heading">
                   <span (click)="updateWeather('desktop')" style="font-weight: bold; cursor: pointer">Hourly Weather in {{cityname}} </span>
-                  <span><mat-icon class="cursor: pointer" (click)="updateWeather('desktop')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span>
+                  <span><mat-icon class="refresh-icon" (click)="updateWeather('desktop')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span>
             </div></div>
             <div class="mobile"><div class="detailsCard-heading">
                   <span (click)="updateWeather('mobile')" style="font-weight: bold; cursor: pointer">Hourly Weather in {{cityname}} </span>
-                  <span><mat-icon class="cursor: pointer" (click)="updateWeather('mobile')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span>
+                  <span><mat-icon class="refresh-icon" (click)="updateWeather('mobile')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span>{{updateMessage}}</span>
             </div></div>       
            <!-- <div>{{cityWeather['hourly'] | json }}</div>-->
             <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
@@ -150,12 +150,12 @@
            <div class="desktop"><div class="detailsCard-heading">
 
               <span (click)="updateWeather('desktop')" style="font-weight: bold; cursor: pointer">7-day Weather in {{cityname}} </span>
-              <span><mat-icon class="cursor: pointer" (click)="updateWeather('desktop')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span style="color:red">{{updateMessage}}</span>
+              <span><mat-icon class="refresh-icon" (click)="updateWeather('desktop')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span style="color:red">{{updateMessage}}</span>
            </div></div>
            <div class="mobile"><div class="detailsCard-heading">
 
               <span (click)="updateWeather('mobile')" style="font-weight: bold; cursor: pointer">7-day Weather in {{cityname}} </span>
-              <span><mat-icon class="cursor: pointer" (click)="updateWeather('mobile')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span style="color:red">{{updateMessage}}</span>
+              <span><mat-icon class="refresh-icon" (click)="updateWeather('mobile')" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></span><span style="color:red">{{updateMessage}}</span>
            </div></div>
            <!-- <div>{{cityWeather['hourly'] | json }}</div>-->
                <div class="Hourly--timestamp">As of {{(cityWeather["current"]["dt"]* 1000) | date : 'shortTime'}} {{cityWeather["timezone"]}}</div>
