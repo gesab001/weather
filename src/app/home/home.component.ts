@@ -44,8 +44,26 @@ export class HomeComponent implements OnInit {
   percent = 0;
 	
   // Move obj element along path based on percentage of total length
+  
+  calculateTimeTillSunset(){
+    var sunriseTime = this.cityWeather["current"]["sunrise"] * 1000;
+    var sunsetTime = this.cityWeather["current"]["sunset"] * 1000;
+    var dayLightHours = sunsetTime - sunriseTime;
+    var sunLeft = sunsetTime - this.today;
+    var timeSinceSunRise = this.today - sunriseTime;
+    var percent = Math.round(timeSinceSunRise / dayLightHours * 100);
+    console.log("sunsetTime: " + sunsetTime);
+    console.log("total daylight: " + dayLightHours);
+    console.log("today: " + this.today);
+    console.log("sun hours left:" + sunLeft);
+    console.log("sun hours gone:" + timeSinceSunRise);
+    console.log("percent: " + percent);
+    this.percent = percent;
+
+  }
   moveObj()
 	{
+	   this.calculateTimeTillSunset();
 	   const path = this.path.nativeElement;
        const marker = (this.marker.nativeElement);
 	   console.log(path);
@@ -105,7 +123,8 @@ export class HomeComponent implements OnInit {
         // this returns null
         this.moveObj();
     }
-    
+   
+     
   loadDefaultLocation(){
      var lat = "-36.8509";
      var long = "174.7645";
