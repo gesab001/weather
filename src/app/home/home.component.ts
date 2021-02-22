@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
                    
           }
      });
-    /* this.defaultLocation = JSON.parse(localStorage.getItem("defaultLocation"));
+   /* this.defaultLocation = JSON.parse(localStorage.getItem("defaultLocation"));
      this.lat = this.defaultLocation["items"][0]["lat"];
      this.lon = this.defaultLocation["items"][0]["lon"];
      this.cityname = this.defaultLocation["items"][0]["city"];
@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
      this.country = this.defaultLocation["items"][0]["country"];
 
      this.loadData();*/
-
+    // this.getLocation();
 
   }
 
@@ -209,6 +209,7 @@ export class HomeComponent implements OnInit {
   }
 
   getLocation() {
+      //this.loadData("-36.8509", "174.7645"); this.cityname= "Auckland"; this.country="NZ";
       this.weatherparams = false;
       var x = document.getElementById("demo");
 	  if (navigator.geolocation) {
@@ -221,6 +222,7 @@ export class HomeComponent implements OnInit {
 		}, (err) => {this.geocoding = false; this.loadData("-36.8509", "174.7645"); this.cityname= "Auckland"; this.country="NZ";});
 	  } else { 
 		x.innerHTML = "Geolocation is not supported by this browser.";
+		this.loadData("-36.8509", "174.7645"); this.cityname= "Auckland"; this.country="NZ";
 	  }
   }
 
